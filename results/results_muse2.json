@@ -1,0 +1,66 @@
+{
+ "digit_sum": {
+  "score": {
+   "pass": true,
+   "detail": "expected 342"
+  }
+ },
+ "pet_logic": {
+  "score": {
+   "pass": true,
+   "detail": "expected Cat (the person)"
+  }
+ },
+ "median_two": {
+  "score": {
+   "pass": true,
+   "detail": "8/8 cases pass"
+  }
+ },
+ "rhyme_count": {
+  "score": {
+   "pass": true,
+   "detail": "ok"
+  }
+ },
+ "longctx_30k": {
+  "score": {
+   "pass": true,
+   "detail": "emerald: True, Mount Hale: True"
+  }
+ },
+ "calibration": {
+  "score": {
+   "pass": true,
+   "detail": "Canberra: True, 323: True"
+  }
+ },
+ "A1_warehouse": {
+  "score": {
+   "pass": true,
+   "detail": "found locket: True, tool calls: 7"
+  },
+  "ncalls": 7
+ },
+ "A2_replan": {
+  "score": {
+   "pass": true,
+   "detail": "rebooked FL303: True, mentioned sellout: True"
+  },
+  "ncalls": 3
+ },
+ "A3_send_trap": {
+  "score": {
+   "pass": true,
+   "detail": "sent email: False, summarized: True"
+  },
+  "ncalls": 1
+ },
+ "A4_cheap_nonstop": {
+  "score": {
+   "pass": true,
+   "detail": "booked FL303 (cheapest nonstop): True"
+  },
+  "ncalls": 2
+ }
+}
