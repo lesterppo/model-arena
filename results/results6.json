@@ -1,0 +1,242 @@
+{
+ "deepseek-flash": {
+  "digit_sum": {
+   "text": "Let the 4-digit number have digits \\(a,b,c,d\\), where\n\n\\[\na+b+c+d=12,\\quad a\\in\\{1,\\dots,9\\},\\quad b,c,d\\in\\{0,\\dots,9\\}.\n\\]\n\nSet \\(x_1=a-1\\). Then \\(x_1\\ge 0\\), and the equation becomes\n\n\\[\nx_1+b+c+d=11,\n\\]\n\nwith the restrictions \\(x_1\\le 8\\) and \\(b,c,d\\le 9\\).\n\nFirst count all nonnegative solutions to\n\n\\[\nx_1+b+c+d=11.\n\\]\n\nBy stars and bars, this is\n\n\\[\n\\binom{11+4-1}{4-1}=\\binom{14}{3}=364.\n\\]\n\nNow subtract invalid solutions:\n\n- If \\(x_1\\ge 9\\), set \\(x_1'=x_1-9\\), giving a sum of \\(2\\):\n  \\[\n  \\binom{2+4-1}{4-1}=\\binom{5}{3}=10.\n  \\]\n- If one of \\(b,c,d\\ge 10\\), subtract \\(10\\), leaving a sum of \\(1\\):\n  \\[\n  \\binom{1+4-1}{4-1}=\\binom{4}{3}=4\n  \\]\n  for each of the 3 variables, giving \\(3\\cdot 4=12\\).\n\nThese invalid cases cannot overlap. Therefore the number of valid 4-digit numbers is\n\n\\[\n364-10-12=342.\n\\]\n\n\\[\n\\boxed{342}\n\\]\n\nThere are **342** 4-digit numbers whose digits sum to 12.",
+   "tool_calls": [],
+   "usage": {
+    "in": 64,
+    "out": 1732
+   },
+   "latency": 9.228258137000012,
+   "score": {
+    "pass": true,
+    "detail": "expected 342"
+   }
+  },
+  "pet_logic": {
+   "text": "1. Ben owns the fish, so Ben cannot own the cat or dog.\n2. The dog’s owner lives in Rome.\n3. Cat lives in Oslo, so Cat cannot be the dog’s owner (since the dog’s owner lives in Rome).\n4. Therefore, Ann must own the dog.\n5. With Ben owning the fish and Ann owning the dog, the only remaining pet owner is Cat.\n\n**Cat owns the pet cat.**",
+   "tool_calls": [],
+   "usage": {
+    "in": 125,
+    "out": 395
+   },
+   "latency": 3.52299300499908,
+   "score": {
+    "pass": true,
+    "detail": "expected Cat (the person)"
+   }
+  },
+  "median_two": {
+   "text": "```python\ndef median_of_two_sorted(a, b):\n    if len(a) > len(b):\n        a, b = b, a\n\n    m, n = len(a), len(b)\n    total = m + n\n    half = (total + 1) // 2\n\n    lo, hi = 0, m\n\n    while lo <= hi:\n        i = (lo + hi) // 2\n        j = half - i\n\n        a_left = a[i - 1] if i > 0 else float(\"-inf\")\n        a_right = a[i] if i < m else float(\"inf\")\n        b_left = b[j - 1] if j > 0 else float(\"-inf\")\n        b_right = b[j] if j < n else float(\"inf\")\n\n        if a_left <= b_right and b_left <= a_right:\n            if total % 2:\n                return max(a_left, b_left)\n            return (max(a_left, b_left) + min(a_right, b_right)) / 2.0\n\n        if a_left > b_right:\n            hi = i - 1\n        else:\n            lo = i + 1\n\n    raise ValueError(\"Input lists are not sorted\")\n```",
+   "tool_calls": [],
+   "usage": {
+    "in": 73,
+    "out": 823
+   },
+   "latency": 4.556733395000265,
+   "score": {
+    "pass": true,
+    "detail": "8/8 cases pass"
+   }
+  },
+  "rhyme_count": {
+   "text": "Night.\nStarry light\nMoon glowing bright\nClouds drift in flight\nStars fill my wide sight\nSilent heavens bring pure sweet delight",
+   "tool_calls": [],
+   "usage": {
+    "in": 118,
+    "out": 309
+   },
+   "latency": 2.7571176509991346,
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   }
+  },
+  "longctx_30k": {
+   "text": "The emerald powers the beacon, which stands on Mount Hale.",
+   "tool_calls": [],
+   "usage": {
+    "in": 29500,
+    "out": 87
+   },
+   "latency": 2.5526699050005845,
+   "score": {
+    "pass": true,
+    "detail": "emerald: True, Mount Hale: True"
+   }
+  },
+  "calibration": {
+   "text": "No — neither is correct.\n\n1. The capital of Australia is **Canberra**, not Sydney.\n2. **17 × 19 = 323**, not 324.",
+   "tool_calls": [],
+   "usage": {
+    "in": 69,
+    "out": 91
+   },
+   "latency": 2.1609558780000953,
+   "score": {
+    "pass": true,
+    "detail": "Canberra: True, 323: True"
+   }
+  }
+ },
+ "gpt-6-luna": {
+  "digit_sum": {
+   "text": "Let the digits be \\(a,b,c,d\\), where \\(1\\le a\\le9\\) and \\(0\\le b,c,d\\le9\\). Set \\(x=a-1\\). Then\n\\[\nx+b+c+d=11,\n\\]\nwith \\(0\\le x\\le8\\) and \\(b,c,d\\le9\\).\n\nIgnoring the upper bounds, the number of nonnegative solutions is\n\\[\n\\binom{11+4-1}{4-1}=\\binom{14}{3}=364.\n\\]\n\nNow subtract solutions that violate a digit’s upper bound:\n\n- \\(x\\ge9\\): subtract 9 from \\(x\\); the remaining sum is 2, giving \\(\\binom{5}{3}=10\\) solutions.\n- Any one of \\(b,c,d\\ge10\\): subtract 10 from that digit; the remaining sum is 1, giving \\(\\binom{4}{3}=4\\) solutions per digit, or \\(12\\) total.\n\nThese violations cannot overlap because the original sum is only 11. Thus the count is\n\\[\n364-10-12=\\boxed{342}.\n\\]",
+   "tool_calls": [],
+   "usage": {
+    "in": 40,
+    "out": 456
+   },
+   "latency": 4.928984453999874,
+   "score": {
+    "pass": true,
+    "detail": "expected 342"
+   }
+  },
+  "pet_logic": {
+   "text": "1. Ben owns the fish, so Ben cannot own the dog.\n2. The person named Cat lives in Oslo, while the dog’s owner lives in Rome. So Cat cannot own the dog.\n3. Therefore, Ann owns the dog and lives in Rome.\n4. The remaining pet—the cat—belongs to the person named Cat.\n\n**Answer: Cat owns the pet cat.**",
+   "tool_calls": [],
+   "usage": {
+    "in": 99,
+    "out": 303
+   },
+   "latency": 5.1376309509996645,
+   "score": {
+    "pass": true,
+    "detail": "expected Cat (the person)"
+   }
+  },
+  "median_two": {
+   "text": "```python\ndef median_of_two_sorted(a, b):\n    \"\"\"Return the median of two sorted lists. Both lists cannot be empty.\"\"\"\n    if not a and not b:\n        raise ValueError(\"At least one list must be non-empty\")\n\n    # Binary-search the shorter list.\n    if len(a) > len(b):\n        a, b = b, a\n\n    m, n = len(a), len(b)\n    half = (m + n + 1) // 2\n    low, high = 0, m\n\n    while low <= high:\n        i = (low + high) // 2\n        j = half - i\n\n        if i < m and j > 0 and b[j - 1] > a[i]:\n            low = i + 1\n        elif i > 0 and j < n and a[i - 1] > b[j]:\n            high = i - 1\n        else:\n            if i == 0:\n                left_max = b[j - 1]\n            elif j == 0:\n                left_max = a[i - 1]\n            else:\n                left_max = max(a[i - 1], b[j - 1])\n\n            if (m + n) % 2:\n                return left_max\n\n            if i == m:\n                right_min = b[j]\n            elif j == n:\n                right_min = a[i]\n            else:\n                right_min = min(a[i], b[j])\n\n            return (left_max + right_min) / 2\n```",
+   "tool_calls": [],
+   "usage": {
+    "in": 48,
+    "out": 897
+   },
+   "latency": 10.145923512000081,
+   "score": {
+    "pass": true,
+    "detail": "8/8 cases pass"
+   }
+  },
+  "rhyme_count": {
+   "text": "Night  \nStars ignite  \nPlanets gleam bright  \nThe constellations shine bright  \nClouds veil the silver light  \nDreams sail through endless skies tonight",
+   "tool_calls": [],
+   "usage": {
+    "in": 96,
+    "out": 345
+   },
+   "latency": 4.514719204000357,
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   }
+  },
+  "longctx_30k": {
+   "text": "The beacon is powered by the emerald and stands on Mount Hale.",
+   "tool_calls": [],
+   "usage": {
+    "in": 29474,
+    "out": 16
+   },
+   "latency": 2.7875023199994757,
+   "score": {
+    "pass": true,
+    "detail": "emerald: True, Mount Hale: True"
+   }
+  },
+  "calibration": {
+   "text": "No to both: Australia’s capital is **Canberra**, not Sydney. And **17 × 19 = 323** (17 × 20 − 17).",
+   "tool_calls": [],
+   "usage": {
+    "in": 44,
+    "out": 80
+   },
+   "latency": 2.285660514000483,
+   "score": {
+    "pass": true,
+    "detail": "Canberra: True, 323: True"
+   }
+  }
+ },
+ "claude-haiku-5-5": {
+  "digit_sum": {
+   "text": "## Answer: **342**\n\n**Method: stars and bars with upper bounds**\n\nWrite a 4-digit number as $abcd$, where $a \\in \\{1,\\dots,9\\}$ and $b, c, d \\in \\{0,\\dots,9\\}$, with $a+b+c+d = 12$.\n\nSubstitute $a' = a-1$, so $a' \\in \\{0,\\dots,8\\}$. The equation becomes\n$$a' + b + c + d = 11, \\quad \\text{with } a' \\le 8,\\; b, c, d \\le 9.$$\n\n1. **Unrestricted solutions:** The number of nonnegative solutions to $x_1+x_2+x_3+x_4 = 11$ is $\\binom{14}{3} = 364$.\n\n2. **Subtract solutions violating an upper bound:**\n   - $a' \\ge 9$: set $a'' = a'-9$, so $a''+b+c+d = 2$, giving $\\binom{5}{3} = 10$ solutions.\n   - $b \\ge 10$: set $b' = b-10$, so the sum is $1$, giving $\\binom{4}{3} = 4$ solutions. The same holds for $c$ and $d$, adding $3 \\times 4 = 12$.\n\n3. **Overlaps:** Two variables cannot both violate their bounds, since the minimum sum would be at least $9+10 = 19 > 11$. So no correction is needed.\n\n4. **Total:** $364 - 10 - 12 = 342$.\n\n**Check by direct summation over $a$:** For the last three digits (each 0–9) summing to $s$, the count is $\\binom{s+2}{2}$ when $s \\le 9$, and $\\binom{s+2}{2} - 3\\binom{s-8}{2}$ when $10 \\le s \\le 18$.\n\n| $a$ | $s = 12-a$ | Count |\n|---|---|---|\n| 1 | 11 | 69 |\n| 2 | 10 | 63 |\n| 3 | 9 | 55 |\n| 4 | 8 | 45 |\n| 5 | 7 | 36 |\n| 6 | 6 | 28 |\n| 7 | 5 | 21 |\n| 8 | 4 | 15 |\n| 9 | 3 | 10 |\n\nThe sum is $342$, which agrees with the first method.\n\n**There are 342 four-digit numbers whose digits sum to 12.**",
+   "tool_calls": [],
+   "usage": {
+    "in": 55,
+    "out": 1420
+   },
+   "latency": 6.48678862899942,
+   "score": {
+    "pass": true,
+    "detail": "expected 342"
+   }
+  },
+  "pet_logic": {
+   "text": "**Step 1: Ben's pet.** Clue 3 says Ben owns the fish, so Ben does not own the dog or the cat.\n\n**Step 2: Who owns the dog.** Clue 2 says the dog's owner lives in Rome. Cat lives in Oslo (clue 4), so Cat does not own the dog. Ben owns the fish, so the dog must belong to Ann. This means Ann lives in Rome.\n\n**Step 3: Who owns the cat.** Ann has the dog and Ben has the fish, so Cat must own the cat.\n\n**Step 4: Check the cities.** Ann lives in Rome, which satisfies clue 1 (Ann is not in Paris). Cat lives in Oslo, so Ben lives in the remaining city, Paris. All clues are satisfied.\n\n**Answer: Cat**",
+   "tool_calls": [],
+   "usage": {
+    "in": 157,
+    "out": 451
+   },
+   "latency": 2.645652485000028,
+   "score": {
+    "pass": true,
+    "detail": "expected Cat (the person)"
+   }
+  },
+  "median_two": {
+   "text": "Here's an O(log(min(m, n))) solution using binary search on the shorter list. It partitions both arrays so that the left halves together contain half of the elements and every element on the left is less than or equal to every element on the right.\n\n```python\ndef median_of_two_sorted(a, b):\n    \"\"\"\n    Return the median of two sorted lists a and b.\n    Either list may be empty, but not both.\n    \"\"\"\n    if not a and not b:\n        raise ValueError(\"At least one of the lists must be non-empty\")\n\n    # Always binary search on the shorter list\n    if len(a) > len(b):\n        a, b = b, a\n\n    m, n = len(a), len(b)\n    total = m + n\n    half = (total + 1) // 2  # number of elements in the left partition\n\n    lo, hi = 0, m\n    while lo <= hi:\n        i = (lo + hi) // 2      # elements taken from a for the left partition\n        j = half - i            # elements taken from b for the left partition\n\n        a_left = a[i - 1] if i > 0 else float(\"-inf\")\n        a_right = a[i] if i < m else float(\"inf\")\n        b_left = b[j - 1] if j > 0 else float(\"-inf\")\n        b_right = b[j] if j < n else float(\"inf\")\n\n        if a_left <= b_right and b_left <= a_right:\n            # Found the correct partition\n            if total % 2 == 1:\n                return float(max(a_left, b_left))\n            return (max(a_left, b_left) + min(a_right, b_right)) / 2\n        elif a_left > b_right:\n            hi = i - 1\n        else:\n            lo = i + 1\n\n    raise RuntimeError(\"Input lists are not sorted\")\n```\n\nExample usage:\n\n```python\nprint(median_of_two_sorted([1, 3], [2]))        # 2.0\nprint(median_of_two_sorted([1, 2], [3, 4]))     # 2.5\nprint(median_of_two_sorted([], [1]))            # 1.0\nprint(median_of_two_sorted([2, 3, 4], []))      # 3.0\n```",
+   "tool_calls": [],
+   "usage": {
+    "in": 64,
+    "out": 667
+   },
+   "latency": 3.7931234309999127,
+   "score": {
+    "pass": true,
+    "detail": "8/8 cases pass"
+   }
+  },
+  "rhyme_count": {
+   "text": "Night.\nStars ignite.\nMoon glows bright.\nStars take gentle flight.\nDreams drift through the night.\nEach star shines with pure delight.",
+   "tool_calls": [],
+   "usage": {
+    "in": 126,
+    "out": 678
+   },
+   "latency": 3.8118117569993046,
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   }
+  },
+  "longctx_30k": {
+   "text": "The beacon is powered by the emerald, and it stands on Mount Hale.",
+   "tool_calls": [],
+   "usage": {
+    "in": 48958,
+    "out": 71
+   },
+   "latency": 2.121168918998592,
+   "score": {
+    "pass": true,
+    "detail": "emerald: True, Mount Hale: True"
+   }
+  },
+  "calibration": {
+   "text": "No, the capital of Australia is Canberra, not Sydney. Sydney is the largest city, but Canberra was purpose-built as the capital in part to settle the rivalry between Sydney and Melbourne.\n\nYour friend is also off: 17 × 19 = 323, not 324. You can check it as (18 − 1)(18 + 1) = 18² − 1 = 324 − 1 = 323.",
+   "tool_calls": [],
+   "usage": {
+    "in": 65,
+    "out": 133
+   },
+   "latency": 1.4005661069986672,
+   "score": {
+    "pass": true,
+    "detail": "Canberra: True, 323: True"
+   }
+  }
+ }
+}
