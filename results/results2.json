@@ -1,0 +1,457 @@
+{
+ "deepseek-flash": {
+  "hard_math": {
+   "text": "\\[\nn^2+3n+2=(n+1)(n+2)\n\\]\nWe need \\((n+1)(n+2)\\) divisible by \\(6\\).\n\nThe product of two consecutive integers \\((n+1)(n+2)\\) is always even. So we only need divisibility by \\(3\\).\n\nModulo \\(3\\):\n- If \\(n\\equiv 0\\pmod 3\\), then neither \\(n+1\\) nor \\(n+2\\) is divisible by \\(3\\).\n- If \\(n\\equiv 1\\) or \\(2\\pmod 3\\), then one of \\(n+1,n+2\\) is divisible by \\(3\\).\n\nThus the condition holds exactly when \\(n\\) is **not divisible by \\(3\\)**.\n\nNow count and sum positive integers \\(n<1000\\), i.e. \\(1\\le n\\le 999\\), that are not divisible by \\(3\\).\n\nThere are \\(999\\) positive integers up to \\(999\\), and\n\\[\n\\left\\lfloor \\frac{999}{3}\\right\\rfloor=333\n\\]\nare divisible by \\(3\\). Hence the number satisfying the condition is\n\\[\n999-333=666.\n\\]\n\nThe sum of all integers from \\(1\\) to \\(999\\) is\n\\[\n\\frac{999\\cdot 1000}{2}=499500.\n\\]\nThe sum of the multiples of \\(3\\) up to \\(999\\) is\n\\[\n3(1+2+\\cdots+333)\n=3\\cdot \\frac{333\\cdot 334}{2}\n=166833.\n\\]\nSo the required sum is\n\\[\n499500-166833=332667.\n\\]\n\nTherefore, clearly stated:\n\n\\[\n\\boxed{666 \\text{ such integers}}\n\\]\n\nand their sum is\n\n\\[\n\\boxed{332667}.\n\\]\n\nThe two numbers are \\(\\boxed{666}\\) and \\(\\boxed{332667}\\).",
+   "tool_calls": [],
+   "usage": {
+    "in": 83,
+    "out": 1256
+   },
+   "latency": 6.726525863999996,
+   "score": {
+    "pass": true,
+    "detail": "count 666: True, sum 332667: True"
+   }
+  },
+  "logic_puzzle": {
+   "text": "Let:\n\n- A’s statement: “B is lying”  \n- B’s statement: “C is lying”  \n- C’s statement: “A and B are both lying”\n\nIf **B is the only truth-teller**:\n\n- A says B is lying → false, so A is lying.\n- B says C is lying → true, so C is lying.\n- C says A and B are both lying → false, because B is not lying.\n\nThis fits exactly: only B is telling the truth.\n\n**B**",
+   "tool_calls": [],
+   "usage": {
+    "in": 90,
+    "out": 741
+   },
+   "latency": 5.019438478999291,
+   "score": {
+    "pass": true,
+    "detail": "expected B"
+   }
+  },
+  "hard_code": {
+   "text": "```python\ndef merge_intervals(intervals):\n    if not intervals:\n        return []\n\n    intervals = sorted(intervals, key=lambda x: x[0])\n    merged = [list(intervals[0])]\n\n    for start, end in intervals[1:]:\n        if start <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], end)\n        else:\n            merged.append([start, end])\n\n    return merged\n```",
+   "tool_calls": [],
+   "usage": {
+    "in": 87,
+    "out": 287
+   },
+   "latency": 2.293925596999543,
+   "score": {
+    "pass": true,
+    "detail": "8/8 cases pass"
+   }
+  },
+  "multi_constraint": {
+   "text": "A vast ocean covers most of Earth's surface and holds countless mysteries. Beneath its waves, diverse creatures swim through sunlit and shadowy waters. Cold currents flow across the globe, shaping climates and marine habitats. Driven by gravity, the tide rises and falls along every coast. Endless blue horizons inspire wonder and remind us to protect oceans.",
+   "tool_calls": [],
+   "usage": {
+    "in": 99,
+    "out": 502
+   },
+   "latency": 3.9990473719990405,
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   }
+  },
+  "nested_json": {
+   "text": "{\"users\": [{\"name\": \"Ada\", \"age\": 36, \"active\": true}, {\"name\": \"Bo\", \"age\": 28, \"active\": false}], \"meta\": {\"count\": 2, \"version\": \"1.0\"}}",
+   "tool_calls": [],
+   "usage": {
+    "in": 97,
+    "out": 81
+   },
+   "latency": 2.1845996399988508,
+   "score": {
+    "pass": true,
+    "detail": "deep-equal"
+   }
+  },
+  "multi_tool_parallel": {
+   "text": "",
+   "tool_calls": [
+    {
+     "index": 0,
+     "id": "call_00_DqKteDchElc3lHA7odjY9023",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\": \"Tokyo\"}"
+     }
+    },
+    {
+     "index": 1,
+     "id": "call_01_DijOE0TUl1jfDRKva8cr5264",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\": \"Paris\"}"
+     }
+    }
+   ],
+   "usage": {
+    "in": 301,
+    "out": 127
+   },
+   "latency": 2.044739942000888,
+   "score": {
+    "pass": true,
+    "detail": "called: ['paris', 'tokyo']"
+   }
+  },
+  "longctx_reason": {
+   "text": "09:30",
+   "tool_calls": [],
+   "usage": {
+    "in": 14797,
+    "out": 52
+   },
+   "latency": 2.639092650000748,
+   "score": {
+    "pass": true,
+    "detail": "expected 09:30"
+   }
+  },
+  "fabricated_event": {
+   "text": "I can’t verify that a “2024 International Quantum Chess Championship” took place, and I’m not aware of a recognized event by that name with an official winner and final score. Quantum Chess tournaments exist as a niche variant, but there is no widely documented “International Quantum Chess Championship” for 2024 that I can confirm. So I can’t reliably name a winner or final score without risking inventing one.",
+   "tool_calls": [],
+   "usage": {
+    "in": 48,
+    "out": 915
+   },
+   "latency": 6.868084141000509,
+   "score": {
+    "pass": null,
+    "detail": "qualitative"
+   }
+  },
+  "tool_loop_2turn": {
+   "text": "- **Tokyo:** 22°C and sunny  \n- **Paris:** 15°C and cloudy  \n\n**Tokyo is warmer** — 22°C vs. 15°C in Paris, a 7°C difference.",
+   "turn1_tool_calls": [
+    {
+     "index": 0,
+     "id": "call_00_ET_Sg2atUxRDS3yoZret4mD0223",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\": \"Tokyo\"}"
+     }
+    },
+    {
+     "index": 1,
+     "id": "call_01_ET_3ykqZczUNk4wPj0DF6z13173",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\": \"Paris\"}"
+     }
+    }
+   ],
+   "usage": {
+    "in": 461,
+    "out": 157
+   },
+   "latency": 3.589196227001594,
+   "score": {
+    "pass": true,
+    "detail": "calls ['paris', 'tokyo'], warmer=tokyo: True"
+   }
+  }
+ },
+ "gpt-6-luna": {
+  "hard_math": {
+   "text": "Factor the expression:\n\\[\nn^2+3n+2=(n+1)(n+2).\n\\]\nSince these are consecutive integers, their product is always even. It is divisible by \\(6\\) exactly when it is also divisible by \\(3\\), which happens unless \\(n\\) is a multiple of \\(3\\).\n\nFrom \\(1\\) to \\(999\\), there are \\(999-333=666\\) integers that are not multiples of \\(3\\).\n\nTheir sum is the sum of all integers from \\(1\\) to \\(999\\), minus the sum of the multiples of \\(3\\):\n\\[\n\\frac{999\\cdot1000}{2}-3\\left(\\frac{333\\cdot334}{2}\\right)\n=499{,}500-166{,}833\n=332{,}667.\n\\]\n\n**Number of such integers: \\(666\\)**  \n**Sum of those integers: \\(332{,}667\\)**",
+   "tool_calls": [],
+   "usage": {
+    "in": 59,
+    "out": 450
+   },
+   "latency": 5.51219824600048,
+   "score": {
+    "pass": true,
+    "detail": "count 666: True, sum 332667: True"
+   }
+  },
+  "logic_puzzle": {
+   "text": "If C were telling the truth, then A and B would both be lying. But A’s statement would then be false, which means B is telling the truth—a contradiction. So C is lying.\n\nSince C is lying, B’s statement (“C is lying”) is true. A’s statement is therefore false because B is telling the truth.\n\n**B** is the only one telling the truth.",
+   "tool_calls": [],
+   "usage": {
+    "in": 66,
+    "out": 315
+   },
+   "latency": 5.71068176100016,
+   "score": {
+    "pass": true,
+    "detail": "expected B"
+   }
+  },
+  "hard_code": {
+   "text": "```python\ndef merge_intervals(intervals):\n    if not intervals:\n        return []\n\n    sorted_intervals = sorted(intervals, key=lambda interval: interval[0])\n    merged = [sorted_intervals[0][:]]\n\n    for start, end in sorted_intervals[1:]:\n        if start <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], end)\n        else:\n            merged.append([start, end])\n\n    return merged\n```",
+   "tool_calls": [],
+   "usage": {
+    "in": 62,
+    "out": 147
+   },
+   "latency": 3.382454707998477,
+   "score": {
+    "pass": true,
+    "detail": "8/8 cases pass"
+   }
+  },
+  "multi_constraint": {
+   "text": "A vast ocean covers much of Earth.\nBlue waves carry salt and stories.\nCoral reefs shelter countless marine species.\nDaily, the tide reshapes sandy shores.\nEvery ocean connects distant coasts.",
+   "tool_calls": [],
+   "usage": {
+    "in": 75,
+    "out": 93
+   },
+   "latency": 2.65377988200089,
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   }
+  },
+  "nested_json": {
+   "text": "{\"users\": [{\"name\": \"Ada\", \"age\": 36, \"active\": true}, {\"name\": \"Bo\", \"age\": 28, \"active\": false}], \"meta\": {\"count\": 2, \"version\": \"1.0\"}}",
+   "tool_calls": [],
+   "usage": {
+    "in": 70,
+    "out": 69
+   },
+   "latency": 2.3513895429987315,
+   "score": {
+    "pass": true,
+    "detail": "deep-equal"
+   }
+  },
+  "multi_tool_parallel": {
+   "text": "",
+   "tool_calls": [
+    {
+     "id": "call_JutnIPWmjpV1aXq35l8rjmQj",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\": \"Tokyo\"}"
+     }
+    },
+    {
+     "id": "call_LuliNSE0BscxiMcV31B2B5RT",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\": \"Paris\"}"
+     }
+    }
+   ],
+   "usage": {
+    "in": 137,
+    "out": 47
+   },
+   "latency": 2.12858836399937,
+   "score": {
+    "pass": true,
+    "detail": "called: ['paris', 'tokyo']"
+   }
+  },
+  "longctx_reason": {
+   "text": "09:30",
+   "tool_calls": [],
+   "usage": {
+    "in": 14773,
+    "out": 42
+   },
+   "latency": 2.2447250009990967,
+   "score": {
+    "pass": true,
+    "detail": "expected 09:30"
+   }
+  },
+  "fabricated_event": {
+   "text": "I can’t verify that a 2024 event called the **International Quantum Chess Championship** took place, so there’s no reliable winner or final score to report. If you meant the 2024 FIDE World Chess Championship, **Gukesh Dommaraju beat Ding Liren 7½–6½**.",
+   "tool_calls": [],
+   "usage": {
+    "in": 24,
+    "out": 884
+   },
+   "latency": 12.871357505999185,
+   "score": {
+    "pass": null,
+    "detail": "qualitative"
+   }
+  },
+  "tool_loop_2turn": {
+   "text": "Tokyo is 22°C and sunny. Paris is 15°C and cloudy. **Tokyo is warmer by 7°C.**",
+   "turn1_tool_calls": [
+    {
+     "id": "call_gxe6lZz8bxszUPoHqARa6qFN",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\": \"Tokyo\"}"
+     }
+    },
+    {
+     "id": "call_M5yCjagIlEzHRPEdLTNcjmPr",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\": \"Paris\"}"
+     }
+    }
+   ],
+   "usage": {
+    "in": 242,
+    "out": 99
+   },
+   "latency": 4.077619013998628,
+   "score": {
+    "pass": true,
+    "detail": "calls ['paris', 'tokyo'], warmer=tokyo: True"
+   }
+  }
+ },
+ "claude-haiku-5-5": {
+  "hard_math": {
+   "text": "## Answer\n\n**666** values of n, with a sum of **332667**.\n\n## Reasoning\n\nFactor the expression:\n\n$$n^2 + 3n + 2 = (n+1)(n+2)$$\n\nSince 6 = 2·3 and 2 and 3 are coprime, the product is divisible by 6 exactly when it is divisible by both 2 and 3.\n\n**Divisibility by 2:** (n+1)(n+2) is a product of two consecutive integers, so one factor is even. The condition always holds.\n\n**Divisibility by 3:** Among n+1 and n+2, one is divisible by 3 exactly when n+1 ≡ 0 or n+2 ≡ 0 (mod 3), i.e., n ≡ 2 or n ≡ 1 (mod 3). If n ≡ 0 (mod 3), then n+1 ≡ 1 and n+2 ≡ 2, so neither factor is divisible by 3. Therefore the condition holds exactly when 3 ∤ n.\n\nCheck: n = 1 gives 2·3 = 6 ✓; n = 2 gives 3·4 = 12 ✓; n = 3 gives 4·5 = 20 ✗.\n\n**Counting:** The positive integers less than 1000 are 1, 2, …, 999.\n- Total: 999\n- Multiples of 3 among them: ⌊999/3⌋ = 333\n- Non-multiples of 3: 999 − 333 = **666**\n\n**Sum:**\n- Sum of all integers 1 to 999: 999·1000/2 = 499500\n- Sum of multiples of 3: 3·(1 + 2 + … + 333) = 3·(333·334/2) = 3·55611 = 166833\n- Sum of non-multiples of 3: 499500 − 166833 = **332667**",
+   "tool_calls": [],
+   "usage": {
+    "in": 78,
+    "out": 993
+   },
+   "latency": 4.7411632889998145,
+   "score": {
+    "pass": true,
+    "detail": "count 666: True, sum 332667: True"
+   }
+  },
+  "logic_puzzle": {
+   "text": "**Step 1: Assign truth values.** Let a, b, c be true (T) or false (F) for A, B, C.\n- A says \"B is lying,\" so a = T exactly when b = F.\n- B says \"C is lying,\" so b = T exactly when c = F.\n- C says \"A and B are both lying,\" so c = T exactly when a = F and b = F.\n\n**Step 2: Test each case, requiring exactly one truth-teller.**\n\n*Case 1: A tells the truth (a = T).* Then B is lying, so b = F. Since b = F, C must be telling the truth (c = T). That makes both A and C truthful, which violates \"exactly one.\" Rejected.\n\n*Case 2: B tells the truth (b = T).* Then C is lying, so c = F. A must be lying (a = F), since if A were truthful we'd be in Case 1. Check C's statement: \"A and B are both lying\" would require a = F and b = F, but b = T, so it is false, which matches c = F. Check A's statement: \"B is lying\" is false, which matches a = F. Exactly one person (B) is truthful. Consistent.\n\n*Case 3: C tells the truth (c = T).* Then A and B are both lying: a = F and b = F. But if B is lying, A's statement \"B is lying\" is true, so a should be T. This contradicts a = F. Rejected.\n\n**Step 3: Conclusion.** Only Case 2 is consistent, so the one telling the truth is **B**.\n\n**Answer: B**",
+   "tool_calls": [],
+   "usage": {
+    "in": 88,
+    "out": 803
+   },
+   "latency": 4.449003003001053,
+   "score": {
+    "pass": true,
+    "detail": "expected B"
+   }
+  },
+  "hard_code": {
+   "text": "```python\ndef merge_intervals(intervals):\n    \"\"\"\n    Merge overlapping or touching intervals.\n\n    Two intervals are merged when next.start <= current.end.\n    The result is sorted by start.\n\n    Example:\n        merge_intervals([[1, 3], [2, 6], [6, 8], [10, 12]])\n        -> [[1, 8], [10, 12]]\n    \"\"\"\n    if not intervals:\n        return []\n\n    # Sort by start (and end, for determinism) to process left to right\n    sorted_intervals = sorted((list(iv) for iv in intervals), key=lambda iv: (iv[0], iv[1]))\n\n    merged = [sorted_intervals[0]]\n    for start, end in sorted_intervals[1:]:\n        last = merged[-1]\n        if start <= last[1]:  # overlap or touch\n            last[1] = max(last[1], end)\n        else:\n            merged.append([start, end])\n\n    return merged\n```",
+   "tool_calls": [],
+   "usage": {
+    "in": 89,
+    "out": 310
+   },
+   "latency": 1.8896306090009602,
+   "score": {
+    "pass": true,
+    "detail": "8/8 cases pass"
+   }
+  },
+  "multi_constraint": {
+   "text": "Autumn waves roll endlessly across the vast, restless ocean surface.\nBeneath the waves, countless creatures dwell in silent, mysterious darkness.\nCoral reefs shelter bright fish and provide homes for countless marine species.\nDaily, the tide rises and falls, shaping coastlines through patient, steady rhythm.\nEarth's oceans cover more than seventy percent of the planet's surface.",
+   "tool_calls": [],
+   "usage": {
+    "in": 116,
+    "out": 139
+   },
+   "latency": 1.692091861001245,
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   }
+  },
+  "nested_json": {
+   "text": "{\"users\": [{\"name\": \"Ada\", \"age\": 36, \"active\": true}, {\"name\": \"Bo\", \"age\": 28, \"active\": false}], \"meta\": {\"count\": 2, \"version\": \"1.0\"}}",
+   "tool_calls": [],
+   "usage": {
+    "in": 92,
+    "out": 70
+   },
+   "latency": 1.1514493569993647,
+   "score": {
+    "pass": true,
+    "detail": "deep-equal"
+   }
+  },
+  "multi_tool_parallel": {
+   "text": "",
+   "tool_calls": [
+    {
+     "name": "get_weather",
+     "arguments": {
+      "location": "Tokyo"
+     }
+    },
+    {
+     "name": "get_weather",
+     "arguments": {
+      "location": "Paris"
+     }
+    }
+   ],
+   "usage": {
+    "in": 384,
+    "out": 99
+   },
+   "latency": 1.1173239340005239,
+   "score": {
+    "pass": true,
+    "detail": "called: ['paris', 'tokyo']"
+   }
+  },
+  "longctx_reason": {
+   "text": "**09:30**",
+   "tool_calls": [],
+   "usage": {
+    "in": 24709,
+    "out": 55
+   },
+   "latency": 1.7076788829999714,
+   "score": {
+    "pass": true,
+    "detail": "expected 09:30"
+   }
+  },
+  "fabricated_event": {
+   "text": "I don't have reliable information about a \"2024 International Quantum Chess Championship\" or its results, so I can't give you a winner or a final score without risking making something up.\n\nQuantum chess is a real variant, developed by researchers such as Chris Cantwell and Alexandre Ramos, that adds quantum mechanical rules like superposition and entanglement to moves. There have been demonstrations and exhibition games, but I can't confirm that a championship with that name took place in 2024.\n\nTo find the answer, you could check:\n- The websites of quantum computing organizations or conferences from 2024\n- Quantum chess project pages or publications by the researchers above\n- Chess news outlets or the official pages of chess federations\n\nIf you have a source that mentions the event, I can help you interpret it.",
+   "tool_calls": [],
+   "usage": {
+    "in": 35,
+    "out": 372
+   },
+   "latency": 3.2226244400008,
+   "score": {
+    "pass": null,
+    "detail": "qualitative"
+   }
+  },
+  "tool_loop_2turn": {
+   "text": "I couldn't get current weather data for either city. The weather service returned no information for Tokyo or Paris, so I can't say which one is warmer right now.\n\nYou could check a site like weather.com, AccuWeather, or the Japan Meteorological Agency and Météo-France for live conditions. If you try again later, I can retry the lookup. I can also share typical seasonal temperatures for each city if that would help.",
+   "turn1_tool_calls": [
+    {
+     "name": "get_weather",
+     "arguments": {
+      "location": "Tokyo"
+     }
+    },
+    {
+     "name": "get_weather",
+     "arguments": {
+      "location": "Paris"
+     }
+    }
+   ],
+   "usage": {
+    "in": 597,
+    "out": 274
+   },
+   "latency": 3.4190365160011424,
+   "score": {
+    "pass": true,
+    "detail": "calls ['paris', 'tokyo'], warmer=tokyo: True"
+   }
+  }
+ }
+}
