@@ -1,0 +1,346 @@
+{
+ "deepseek-flash": {
+  "json_adherence": {
+   "text": "{\"name\": \"Ada\", \"age\": 36, \"skills\": [\"math\", \"music\", \"chess\"]}",
+   "tool_calls": [],
+   "usage": {
+    "in": 65,
+    "out": 39
+   },
+   "latency": 1.9512599959998624,
+   "score": {
+    "pass": true,
+    "detail": "parsed, schema ok"
+   }
+  },
+  "tool_call": {
+   "text": "",
+   "tool_calls": [
+    {
+     "index": 0,
+     "id": "call_00_ET_rBQmEqAvfcShIc84vB7g5697",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\": \"Tokyo\"}"
+     }
+    }
+   ],
+   "usage": {
+    "in": 298,
+    "out": 39
+   },
+   "latency": 85.35045915699993,
+   "score": {
+    "pass": true,
+    "detail": "called get_weather({\"location\": \"Tokyo\"})"
+   }
+  },
+  "math_avg_speed": {
+   "text": "Total distance = 120 + 180 = 300 km  \nTotal time = 1.5 + 2.5 = 4 hours  \nAverage speed = total distance ÷ total time = 300 ÷ 4 = 75 km/h  \n\n**75**",
+   "tool_calls": [],
+   "usage": {
+    "in": 78,
+    "out": 95
+   },
+   "latency": 2.605472246001227,
+   "score": {
+    "pass": true,
+    "detail": "expected 75"
+   }
+  },
+  "math_eggs": {
+   "text": "Janet’s ducks lay **16 eggs** per day.\n\nEggs used:\n- Eats 3 for breakfast\n- Uses 4 to bake muffins\n\nTotal used:  \n\\(3 + 4 = 7\\)\n\nEggs left to sell:  \n\\(16 - 7 = 9\\)\n\nMoney made:  \n\\(9 \\times \\$2 = \\$18\\)\n\n**Janet makes $18 per day.**",
+   "tool_calls": [],
+   "usage": {
+    "in": 78,
+    "out": 148
+   },
+   "latency": 2.7806489750000765,
+   "score": {
+    "pass": true,
+    "detail": "expected 18"
+   }
+  },
+  "code_is_prime": {
+   "text": "```python\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n in (2, 3):\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n\n    return True\n```",
+   "tool_calls": [],
+   "usage": {
+    "in": 60,
+    "out": 224
+   },
+   "latency": 2.6138212060013757,
+   "score": {
+    "pass": true,
+    "detail": "8/8 cases pass"
+   }
+  },
+  "needle_retrieval": {
+   "text": "BLUEBIRD-42",
+   "tool_calls": [],
+   "usage": {
+    "in": 14759,
+    "out": 61
+   },
+   "latency": 2.145238381001036,
+   "score": {
+    "pass": true,
+    "detail": "expected BLUEBIRD-42"
+   }
+  },
+  "chinese_writing": {
+   "text": "量子運算利用量子力學特性處理資訊，基本單位係量子位元（qubit）。量子位元可處於0與1嘅疊加態，多個量子位元亦可透過糾纏產生關聯，並借助干涉放大正確答案。呢啲特性令量子電腦喺部分問題上，例如因數分解同模擬分子，有望比傳統電腦更快。",
+   "tool_calls": [],
+   "usage": {
+    "in": 49,
+    "out": 383
+   },
+   "latency": 3.610339565999311,
+   "score": {
+    "pass": null,
+    "detail": "qualitative"
+   }
+  },
+  "format_follow": {
+   "text": "1. Paris\n2. Tokyo\n3. Brasília",
+   "tool_calls": [],
+   "usage": {
+    "in": 66,
+    "out": 67
+   },
+   "latency": 2.080922601999191,
+   "score": {
+    "pass": true,
+    "detail": "3 lines"
+   }
+  }
+ },
+ "gpt-6-luna": {
+  "json_adherence": {
+   "text": "{\"name\": \"Ada\", \"age\": 36, \"skills\": [\"math\", \"music\", \"chess\"]}",
+   "tool_calls": [],
+   "usage": {
+    "in": 42,
+    "out": 29
+   },
+   "latency": 3.208141364999392,
+   "score": {
+    "pass": true,
+    "detail": "parsed, schema ok"
+   }
+  },
+  "tool_call": {
+   "text": "",
+   "tool_calls": [
+    {
+     "id": "call_KHiMy75yappqb4Rzmwc4VPuV",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"location\":\"Tokyo\"}"
+     }
+    }
+   ],
+   "usage": {
+    "in": 134,
+    "out": 17
+   },
+   "latency": 2.460570662000464,
+   "score": {
+    "pass": true,
+    "detail": "called get_weather({\"location\":\"Tokyo\"})"
+   }
+  },
+  "math_avg_speed": {
+   "text": "Total distance: \\(120+180=300\\) km  \nTotal time: \\(1.5+2.5=4\\) hours  \n\nAverage speed: \\(300\\div4=\\boxed{75}\\) km/h",
+   "tool_calls": [],
+   "usage": {
+    "in": 54,
+    "out": 80
+   },
+   "latency": 2.735405408000588,
+   "score": {
+    "pass": true,
+    "detail": "expected 75"
+   }
+  },
+  "math_eggs": {
+   "text": "Eggs sold each day: \\(16 - 3 - 4 = 9\\)\n\nMoney made: \\(9 \\times \\$2 = \\boxed{\\$18}\\) per day.",
+   "tool_calls": [],
+   "usage": {
+    "in": 54,
+    "out": 79
+   },
+   "latency": 2.4552563870001904,
+   "score": {
+    "pass": true,
+    "detail": "expected 18"
+   }
+  },
+  "code_is_prime": {
+   "text": "```python\nfrom math import isqrt\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n\n    for divisor in range(3, isqrt(n) + 1, 2):\n        if n % divisor == 0:\n            return False\n\n    return True\n```",
+   "tool_calls": [],
+   "usage": {
+    "in": 36,
+    "out": 153
+   },
+   "latency": 21.65427099200133,
+   "score": {
+    "pass": true,
+    "detail": "8/8 cases pass"
+   }
+  },
+  "needle_retrieval": {
+   "text": "The secret password is **BLUEBIRD-42**.",
+   "tool_calls": [],
+   "usage": {
+    "in": 14734,
+    "out": 44
+   },
+   "latency": 3.7081956889996945,
+   "score": {
+    "pass": true,
+    "detail": "expected BLUEBIRD-42"
+   }
+  },
+  "chinese_writing": {
+   "text": "量子運算係利用量子力學原理處理資訊嘅運算方式。傳統電腦以位元表示0或1；量子電腦則使用量子位元，透過疊加與糾纏等特性，處理更複雜嘅狀態。配合專門演算法，量子電腦有望加快部分問題嘅求解，例如分子模擬。不過，量子位元容易受環境干擾，目前仍需提升穩定性，亦未能取代一般電腦。",
+   "tool_calls": [],
+   "usage": {
+    "in": 32,
+    "out": 394
+   },
+   "latency": 6.173535157000515,
+   "score": {
+    "pass": null,
+    "detail": "qualitative"
+   }
+  },
+  "format_follow": {
+   "text": "1. Paris\n2. Tokyo\n3. Brasília",
+   "tool_calls": [],
+   "usage": {
+    "in": 42,
+    "out": 42
+   },
+   "latency": 1.6195234779988823,
+   "score": {
+    "pass": true,
+    "detail": "3 lines"
+   }
+  }
+ },
+ "claude-haiku-5-5": {
+  "json_adherence": {
+   "text": "{\"name\": \"Ada\", \"age\": 36, \"skills\": [\"math\", \"music\", \"chess\"]}",
+   "tool_calls": [],
+   "usage": {
+    "in": 56,
+    "out": 34
+   },
+   "latency": 1.571802922999268,
+   "score": {
+    "pass": true,
+    "detail": "parsed, schema ok"
+   }
+  },
+  "tool_call": {
+   "text": "",
+   "tool_calls": [
+    {
+     "name": "get_weather",
+     "arguments": {
+      "location": "Tokyo"
+     }
+    }
+   ],
+   "usage": {
+    "in": 379,
+    "out": 52
+   },
+   "latency": 1.2385555769997154,
+   "score": {
+    "pass": true,
+    "detail": "called get_weather({\"location\": \"Tokyo\"})"
+   }
+  },
+  "math_avg_speed": {
+   "text": "**Step 1: Total distance**\n120 km + 180 km = 300 km\n\n**Step 2: Total time**\n1.5 h + 2.5 h = 4 h\n\n**Step 3: Average speed**\nAverage speed = total distance ÷ total time = 300 km ÷ 4 h = 75 km/h\n\n(Note: this is not the average of the two segment speeds. Those are 80 km/h and 72 km/h, whose simple average is 76 km/h. The correct method weights each segment by its time.)\n\n**Final answer: 75 km/h**",
+   "tool_calls": [],
+   "usage": {
+    "in": 68,
+    "out": 209
+   },
+   "latency": 2.9746762129998388,
+   "score": {
+    "pass": true,
+    "detail": "expected 75"
+   }
+  },
+  "math_eggs": {
+   "text": "Here's the calculation step by step:\n\n1. **Eggs laid per day:** 16\n2. **Eggs eaten for breakfast:** 3\n3. **Eggs used for muffins:** 4\n4. **Total eggs used at home:** 3 + 4 = 7\n5. **Eggs left to sell:** 16 − 7 = 9\n6. **Money made per day:** 9 × $2 = **$18**\n\nJanet makes **$18 per day**.",
+   "tool_calls": [],
+   "usage": {
+    "in": 78,
+    "out": 151
+   },
+   "latency": 1.4785827879986755,
+   "score": {
+    "pass": true,
+    "detail": "expected 18"
+   }
+  },
+  "code_is_prime": {
+   "text": "```python\ndef is_prime(n):\n    \"\"\"Return True if n is a prime number, False otherwise.\"\"\"\n    if n < 2:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\n\n# Example usage\nif __name__ == \"__main__\":\n    for num in [-5, 0, 1, 2, 3, 4, 17, 18, 97, 100]:\n        print(num, is_prime(num))\n```",
+   "tool_calls": [],
+   "usage": {
+    "in": 49,
+    "out": 208
+   },
+   "latency": 1.91870116499922,
+   "score": {
+    "pass": true,
+    "detail": "8/8 cases pass"
+   }
+  },
+  "needle_retrieval": {
+   "text": "The secret password is **BLUEBIRD-42**. It appears in the document right after Paragraph 37, where it says: \"The secret password is BLUEBIRD-42. Remember it for later.\"",
+   "tool_calls": [],
+   "usage": {
+    "in": 24647,
+    "out": 108
+   },
+   "latency": 1.4979391149990988,
+   "score": {
+    "pass": true,
+    "detail": "expected BLUEBIRD-42"
+   }
+  },
+  "chinese_writing": {
+   "text": "量子運算利用量子力學的原理處理資訊。傳統電腦以「位元」（0或1）為基本單位，量子電腦則使用「量子位元」，它能同時處於0和1的疊加態，使運算具有平行處理的潛力。此外，量子糾纏讓多個量子位元之間產生緊密關聯，即使相隔遙遠，測量其中一個也會影響另一個。量子干涉則可以放大正確答案的機率、抵消錯誤結果。這些特性使量子電腦在因數分解、模擬分子結構等特定問題上，有望遠超傳統電腦的效能。",
+   "tool_calls": [],
+   "usage": {
+    "in": 42,
+    "out": 212
+   },
+   "latency": 2.1755019669999456,
+   "score": {
+    "pass": null,
+    "detail": "qualitative"
+   }
+  },
+  "format_follow": {
+   "text": "1. Paris\n2. Tokyo\n3. Brasília",
+   "tool_calls": [],
+   "usage": {
+    "in": 61,
+    "out": 22
+   },
+   "latency": 1.0291800159993727,
+   "score": {
+    "pass": true,
+    "detail": "3 lines"
+   }
+  }
+ }
+}
