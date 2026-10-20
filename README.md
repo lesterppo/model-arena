@@ -1,5 +1,40 @@
 # model-arena
 
+Head-to-head scored arenas for frontier LLMs. Two completed rounds:
+
+- **Round 10** (2026-10-21) — GPT-6 Luna, Claude Haiku 5.5, DeepSeek V4.1 Flash,
+  MiniMax V3.1 Flash on four *fresh* batteries: **a clean four-way tie at
+  24/24**, separated only by tokens and latency. Full write-up:
+  [REPORT-R10.md](REPORT-R10.md). Run it with `harness/round10.py`.
+- **Round 9** (2026-10-17) — DeepSeek Flash, GPT-6 Luna, Claude Haiku 5.5 and
+  Muse Spark, four designer batteries, 25 tests. Detailed below.
+
+## Round 10 summary
+
+| taker \ designer | deepseek | luna | haiku | minimax | TOTAL |
+|---|---|---|---|---|---|
+| gpt-6-luna | 6/6 | 6/6 | 6/6 | 6/6 | **24/24** |
+| claude-haiku-5-5 | 6/6 | 6/6 | 6/6 | 6/6 | **24/24** |
+| deepseek-flash | 6/6 | 6/6 | 6/6 | 6/6 | **24/24** |
+| minimax-m3.1-flash | 6/6 | 6/6 | 6/6 | 6/6 | **24/24** |
+
+| model | median latency | input tok | output tok | tool calls |
+|---|---|---|---|---|
+| claude-haiku-5-5 | 2.93 s | 12 208 | 10 301 | 14 |
+| deepseek-flash | 2.67 s | 12 458 | 12 754 | 17 |
+| gpt-6-luna | 3.37 s | **4 337** | **4 187** | 14 |
+| minimax-m3.1-flash | 3.21 s | 18 316 | 12 793 | 19 |
+
+Luna matched the field on a third of the tokens. MiniMax matched it 2.4x slower
+(3x on code). Corrections made while running: three self-written answer keys were
+wrong and machine-verified replacements were substituted before scoring; the
+syllogism item turned out to have two valid answers; and `gpt-6-luna` needed the
+`/v1/responses` API for function tools (chat-completions rejects them).
+
+---
+
+# Round 9
+
 Four frontier "flash-class" models — **DeepSeek Flash** (`deepseek-flash`),
 **GPT-6 Luna** (`gpt-6-luna`), **Claude Haiku 5.5** (`claude-haiku-5-5`) and
 **Muse Spark** — compared across 9 rounds of capability and agentic tests,
@@ -39,15 +74,27 @@ Headline findings (see [REPORT.md](REPORT.md) for the full write-up):
 
 ## Layout
 
-- `batteries/` — the four designer batteries (JSON) + the design brief.
-- `harness/` — the runnable round-9 harness: `round9.py`, `providers.py`
-  (env-var auth), `muse_spark.py` + answer bank.
+- `batteries/r10_*.json` — round-10 batteries (6 tests each, one per designer style).
+- `batteries/{deepseek,luna,haiku,muse}.json` — the round-9 designer batteries + the design brief.
+- `harness/round10.py` — round-10 harness (4 providers, 3 endpoints, raw output
+  persisted, `--rescore` regrades offline), `harness/round9.py` — round-9
+  harness, `harness/providers.py` (env-var auth), `harness/muse_spark.py` +
+  answer bank.
 - `results/` — raw result JSONs for all rounds.
 - `rounds1-8/` — exploratory-phase scripts (reference; need path/auth
   adaptation, see note inside).
-- `REPORT.md` — full findings, methodology, caveats.
+- `REPORT-R10.md` — round-10 findings, methodology, caveats. `REPORT.md` — round 9.
 
 ## Run it yourself
+
+```bash
+export OPENAI_API_KEY=... ANTHROPIC_API_KEY=... DEEPSEEK_API_KEY=... MINIMAX_API_KEY=...
+cd harness
+python3 round10.py            # round 10, 96 calls, ~11 min
+python3 round10.py --rescore  # regrade round 10 from stored raw text, no network
+```
+
+Round 9 (no MiniMax):
 
 ```bash
 export DEEPSEEK_API_KEY=... OPENAI_API_KEY=... ANTHROPIC_API_KEY=...
