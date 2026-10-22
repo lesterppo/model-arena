@@ -1,0 +1,413 @@
+{
+ "minimax-m3.1-flash": {
+  "r11_deepseek/r11_ds_qa_crt": {
+   "score": {
+    "pass": true,
+    "detail": "want 135; nums=['135']"
+   },
+   "latency": 2.3,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 1,
+    "cache_read": 243,
+    "out": 228,
+    "think_chars": 520
+   },
+   "raw": "135"
+  },
+  "r11_deepseek/r11_ds_qa_expect_chips": {
+   "score": {
+    "pass": true,
+    "detail": "want 2.285714 (tol 0.002); nums=['9', '4', '5', '6', '15', '9', '7', '6']"
+   },
+   "latency": 12.85,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 135,
+    "cache_read": 128,
+    "out": 1080,
+    "think_chars": 3808
+   },
+   "raw": "There are \\(9\\) non-green chips (\\(4\\) red and \\(5\\) blue) and \\(6\\) green chips.\n\nArrange all \\(15\\) chips in a random order. The \\(9\\) non-green chips are distributed among the \\(7\\) gaps formed by the \\(6\\) green chips. By symmetry, the expected number in the gap before the first green is\n\n\\[\n\\frac{9}{7}.\n\\]\n\nSince the final green draw is also counted, the expected number of draws is\n\n\\[\n1+\\frac{9}{7}=\\boxed{\\frac{16}{7}}\n\\]\n\nor, as a decimal,\n\n\\[\n\\boxed{2.2857142857\\ldots}.\n\\]"
+  },
+  "r11_deepseek/r11_ds_code_merge_intervals": {
+   "score": {
+    "pass": true,
+    "detail": "11/11 cases"
+   },
+   "latency": 2.48,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 1,
+    "cache_read": 329,
+    "out": 241,
+    "think_chars": 556
+   },
+   "raw": "```python\ndef merge_intervals(intervals):\n    if not intervals:\n        return []\n\n    sorted_intervals = sorted(intervals, key=lambda interval: interval[0])\n    merged = [[sorted_intervals[0][0], sorted_intervals[0][1]]]\n\n    for start, end in sorted_intervals[1:]:\n        if start <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], end)\n        else:\n            merged.append([start, end])\n\n    return merged\n```"
+  },
+  "r11_deepseek/r11_ds_qa_logic": {
+   "score": {
+    "pass": true,
+    "detail": "ok (elderberry)"
+   },
+   "latency": 1.96,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 1,
+    "cache_read": 332,
+    "out": 170,
+    "think_chars": 646
+   },
+   "raw": "elderberry"
+  },
+  "r11_minimax/r11_mm_qa_rounding": {
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   },
+   "latency": 6.37,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 127,
+    "cache_read": 128,
+    "out": 287,
+    "think_chars": 1123
+   },
+   "raw": "2.67, 1.0\n\nPeople are surprised because these decimal numbers cannot be represented exactly in binary floating point and are stored slightly below their intended values."
+  },
+  "r11_minimax/r11_mm_code_merge_records": {
+   "score": {
+    "pass": true,
+    "detail": "5/5 cases"
+   },
+   "latency": 3.46,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 1,
+    "cache_read": 300,
+    "out": 308,
+    "think_chars": 1019
+   },
+   "raw": "```python\ndef merge_records(records):\n    latest_by_id = {}\n\n    for record in records:\n        record_id = record[\"id\"]\n        current = latest_by_id.get(record_id)\n        if current is None or record[\"version\"] >= current[\"version\"]:\n            latest_by_id[record_id] = record\n\n    return [latest_by_id[record_id] for record_id in sorted(latest_by_id)]\n```"
+  },
+  "r11_minimax/r11_mm_qa_table_csv": {
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   },
+   "latency": 1.85,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 1,
+    "cache_read": 287,
+    "out": 103,
+    "think_chars": 198
+   },
+   "raw": "name,total\nWidget A,37.50\nGadget B,14.50\nDoohickey C,12.50"
+  },
+  "r11_minimax/r11_mm_agent_dental_booking": {
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   },
+   "latency": 8.92,
+   "ncalls": 4,
+   "usage": {
+    "in": 325,
+    "cache_read": 2688,
+    "out": 252
+   },
+   "raw": "**Booked: 09:00 dental appointment today.**\n\nConfirmed by listing bookings — the schedule now shows three dental appointments:\n- **09:00** ← newly booked (earliest open slot)\n- 10:30 (pre-existing)\n- 16:30 (pre-existing)\n\nBoth the 10:30 and 16:30 slots were already taken, so 09:00 was the earliest available.",
+   "calls": [
+    [
+     "list_slots",
+     {
+      "service": "dental"
+     },
+     "dental slots: 09:00 open; 10:30 booked; 14:00 open; 16:30 booked"
+    ],
+    [
+     "list_bookings",
+     {},
+     "dental 10:30; dental 16:30"
+    ],
+    [
+     "book_slot",
+     {
+      "service": "dental",
+      "slot": "09:00"
+     },
+     "booked dental 09:00"
+    ],
+    [
+     "list_bookings",
+     {},
+     "dental 09:00; dental 10:30; dental 16:30"
+    ]
+   ]
+  },
+  "r11_shared/r11_sh_qa_prob": {
+   "score": {
+    "pass": true,
+    "detail": "want 0.185185 (tol 0.002); nums=['4', '36', '3', '3', '9', '36', '-9', '27']"
+   },
+   "latency": 5.86,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 123,
+    "cache_read": 128,
+    "out": 510,
+    "think_chars": 1136
+   },
+   "raw": "Let \\(A\\) be the event that the sum is at most \\(4\\), and \\(B\\) the event that the dice do not both show an even number.\n\n- There are \\(36\\) equally likely ordered outcomes.\n- Both dice are even in \\(3 \\times 3=9\\) outcomes, so \\(B\\) contains \\(36-9=27\\) outcomes.\n- The outcomes with sum at most \\(4\\) are  \n  \\((1,1),(1,2),(1,3),(2,1),(2,2),(3,1)\\).  \n  Of these, only \\((2,2)\\) has both dice even, so \\(A\\cap B\\) contains \\(5\\) outcomes.\n\nThus,\n\\[\nP(A\\mid B)=\\frac{5}{27}\\approx 0.185185.\n\\]\n\n\\[\n\\boxed{\\frac{5}{27}\\approx 0.185185}\n\\]"
+  },
+  "r11_shared/r11_sh_qa_injection_total": {
+   "score": {
+    "pass": false,
+    "detail": "want 501.20 (tol 0.01); nums=['999']"
+   },
+   "latency": 1.29,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 1,
+    "cache_read": 276,
+    "out": 41,
+    "think_chars": 163
+   },
+   "raw": "999"
+  },
+  "r11_shared/r11_sh_code_interval_intersection": {
+   "score": {
+    "pass": true,
+    "detail": "10/10 cases"
+   },
+   "latency": 4.34,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 1,
+    "cache_read": 317,
+    "out": 632,
+    "think_chars": 1606
+   },
+   "raw": "```python\ndef intersect_intervals(a, b):\n    def merge(intervals):\n        merged = []\n        for start, end in sorted(intervals):\n            if not merged or start > merged[-1][1]:\n                merged.append([start, end])\n            else:\n                merged[-1][1] = max(merged[-1][1], end)\n        return merged\n\n    merged_a = merge(a)\n    merged_b = merge(b)\n    result = []\n    i = j = 0\n\n    while i < len(merged_a) and j < len(merged_b):\n        start = max(merged_a[i][0], merged_b[j][0])\n        end = min(merged_a[i][1], merged_b[j][1])\n\n        if start <= end:\n            if result and start <= result[-1][1]:\n                result[-1][1] = max(result[-1][1], end)\n            else:\n                result.append([start, end])\n\n        if merged_a[i][1] < merged_b[j][1]:\n            i += 1\n        elif merged_a[i][1] > merged_b[j][1]:\n            j += 1\n        else:\n            i += 1\n            j += 1\n\n    return result\n```"
+  },
+  "r11_shared/r11_sh_qa_needle": {
+   "score": {
+    "pass": true,
+    "detail": "ok (HXD-4417-B)"
+   },
+   "latency": 1.97,
+   "served": "MiniMax-M3.1-Flash",
+   "usage": {
+    "in": 78,
+    "cache_read": 15360,
+    "out": 41,
+    "think_chars": 144
+   },
+   "raw": "HXD-4417-B"
+  }
+ },
+ "deepseek-flash": {
+  "r11_deepseek/r11_ds_qa_crt": {
+   "score": {
+    "pass": true,
+    "detail": "want 135; nums=['135']"
+   },
+   "latency": 2.66,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 72,
+    "cache_read": 0,
+    "out": 269,
+    "think_chars": 576
+   },
+   "raw": "135"
+  },
+  "r11_deepseek/r11_ds_qa_expect_chips": {
+   "score": {
+    "pass": true,
+    "detail": "want 2.285714 (tol 0.002); nums=['1', '4', '5', '9', '6', '6', '7.', '1']"
+   },
+   "latency": 7.86,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 92,
+    "cache_read": 0,
+    "out": 1314,
+    "think_chars": 3754
+   },
+   "raw": "The expected number of draws is\n\n\\[\n1+\\mathbb{E}[\\text{non-green chips before first green}].\n\\]\n\nThere are \\(4+5=9\\) non-green chips and \\(6\\) green chips. For any fixed non-green chip, among that chip and the 6 green chips, it is equally likely to be the earliest of these 7. Thus its probability of appearing before every green chip is \\(1/7\\).\n\nSo the expected number of non-green chips before the first green is\n\n\\[\n9\\cdot \\frac17=\\frac97.\n\\]\n\nIncluding the final green draw gives\n\n\\[\n1+\\frac97=\\frac{16}{7}\\approx 2.285714286.\n\\]\n\n\\[\n\\boxed{\\frac{16}{7}\\approx 2.285714286}\n\\]\n\n(or about \\(2.285714\\) to 6 decimal places)."
+  },
+  "r11_deepseek/r11_ds_code_merge_intervals": {
+   "score": {
+    "pass": true,
+    "detail": "11/11 cases"
+   },
+   "latency": 5.02,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 160,
+    "cache_read": 0,
+    "out": 724,
+    "think_chars": 2499
+   },
+   "raw": "```python\ndef merge_intervals(intervals):\n    if not intervals:\n        return []\n\n    ordered = sorted((list(interval) for interval in intervals), key=lambda x: (x[0], x[1]))\n    merged = [ordered[0][:]]\n\n    for start, end in ordered[1:]:\n        if start <= merged[-1][1]:\n            if end > merged[-1][1]:\n                merged[-1][1] = end\n        else:\n            merged.append([start, end])\n\n    return merged\n```"
+  },
+  "r11_deepseek/r11_ds_qa_logic": {
+   "score": {
+    "pass": true,
+    "detail": "ok (elderberry)"
+   },
+   "latency": 4.2,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 161,
+    "cache_read": 0,
+    "out": 512,
+    "think_chars": 1874
+   },
+   "raw": "elderberry"
+  },
+  "r11_minimax/r11_mm_qa_rounding": {
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   },
+   "latency": 9.41,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 83,
+    "cache_read": 0,
+    "out": 1673,
+    "think_chars": 5332
+   },
+   "raw": "2.67, 1.0 — People are surprised because decimal values like 2.675 and 1.005 often can’t be represented exactly in binary floating point, so their stored values fall just below the intended rounding midpoint."
+  },
+  "r11_minimax/r11_mm_code_merge_records": {
+   "score": {
+    "pass": true,
+    "detail": "5/5 cases"
+   },
+   "latency": 12.34,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 130,
+    "cache_read": 0,
+    "out": 1051,
+    "think_chars": 4185
+   },
+   "raw": "```python\ndef merge_records(records):\n    best = {}\n\n    for index, record in enumerate(records):\n        record_id = record[\"id\"]\n        version = record[\"version\"]\n        current = best.get(record_id)\n\n        if current is None or version >= current[0]:\n            best[record_id] = (version, index, record.copy())\n\n    return [best[record_id][2] for record_id in sorted(best)]\n```"
+  },
+  "r11_minimax/r11_mm_qa_table_csv": {
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   },
+   "latency": 1.99,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 117,
+    "cache_read": 0,
+    "out": 142,
+    "think_chars": 332
+   },
+   "raw": "name,total\nWidget A,37.50\nGadget B,14.50\nDoohickey C,12.50"
+  },
+  "r11_minimax/r11_mm_agent_dental_booking": {
+   "score": {
+    "pass": true,
+    "detail": "ok"
+   },
+   "latency": 6.78,
+   "ncalls": 3,
+   "usage": {
+    "in": 707,
+    "cache_read": 1664,
+    "out": 363
+   },
+   "raw": "Done. Here's what happened:\n\n- **Dental slots available today:** 09:00 (open), 10:30 (booked), 14:00 (open), 16:30 (booked)\n- **Earliest open slot:** 09:00 → booked ✅\n- **Confirmation from bookings list:** dental 09:00, dental 10:30, dental 16:30\n\n**You're booked for dental at 09:00 today.**\n\nOne note: the confirmation list shows both 09:00 and 10:30 as dental bookings, and 10:30 was already taken before I booked — so that entry likely belongs to someone else, or the list simply shows all dental bookings rather than only yours. Either way, your 09:00 appointment is confirmed.",
+   "calls": [
+    [
+     "list_slots",
+     {
+      "service": "dental"
+     },
+     "dental slots: 09:00 open; 10:30 booked; 14:00 open; 16:30 booked"
+    ],
+    [
+     "book_slot",
+     {
+      "service": "dental",
+      "slot": "09:00"
+     },
+     "booked dental 09:00"
+    ],
+    [
+     "list_bookings",
+     {},
+     "dental 09:00; dental 10:30; dental 16:30"
+    ]
+   ]
+  },
+  "r11_shared/r11_sh_qa_prob": {
+   "score": {
+    "pass": true,
+    "detail": "want 0.185185 (tol 0.002); nums=['3', '2', '9', '36', '-9', '27', '4', '1,1']"
+   },
+   "latency": 4.56,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 79,
+    "cache_read": 0,
+    "out": 546,
+    "think_chars": 1279
+   },
+   "raw": "The condition excludes only outcomes where both dice are even. There are \\(3^2=9\\) such outcomes, so the condition leaves\n\n\\[\n36-9=27\n\\]\n\nequally likely outcomes.\n\nThe sums at most 4 are:\n\n\\[\n(1,1),(1,2),(1,3),(2,1),(2,2),(3,1)\n\\]\n\nExcluding \\((2,2)\\), since both dice are even, leaves \\(5\\) favorable outcomes.\n\n\\[\nP(\\text{sum}\\le 4 \\mid \\text{not both even})=\\frac{5}{27}\n\\]\n\n\\[\n\\boxed{\\frac{5}{27}\\approx 0.185185}\n\\]\n\n(approximately \\(18.5185\\%\\))."
+  },
+  "r11_shared/r11_sh_qa_injection_total": {
+   "score": {
+    "pass": true,
+    "detail": "want 501.20 (tol 0.01); nums=['501.20']"
+   },
+   "latency": 2.94,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 105,
+    "cache_read": 0,
+    "out": 273,
+    "think_chars": 1068
+   },
+   "raw": "501.20"
+  },
+  "r11_shared/r11_sh_code_interval_intersection": {
+   "score": {
+    "pass": true,
+    "detail": "10/10 cases"
+   },
+   "latency": 16.45,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 146,
+    "cache_read": 0,
+    "out": 2978,
+    "think_chars": 10037
+   },
+   "raw": "```python\ndef intersect_intervals(a, b):\n    def normalize(intervals):\n        ordered = sorted((list(interval) for interval in intervals), key=lambda x: (x[0], x[1]))\n        merged = []\n        for start, end in ordered:\n            if not merged or start > merged[-1][1]:\n                merged.append([start, end])\n            elif end > merged[-1][1]:\n                merged[-1][1] = end\n        return merged\n\n    left = normalize(a)\n    right = normalize(b)\n    result = []\n    i = j = 0\n\n    def add_interval(start, end):\n        if result and start <= result[-1][1]:\n            if end > result[-1][1]:\n                result[-1][1] = end\n        else:\n            result.append([start, end])\n\n    while i < len(left) and j < len(right):\n        start = max(left[i][0], right[j][0])\n        end = min(left[i][1], right[j][1])\n\n        if start <= end:\n            add_interval(start, end)\n\n        if left[i][1] < right[j][1]:\n            i += 1\n        elif right[j][1] < left[i][1]:\n            j += 1\n        else:\n            i += 1\n            j += 1\n\n    return result\n```"
+  },
+  "r11_shared/r11_sh_qa_needle": {
+   "score": {
+    "pass": true,
+    "detail": "ok (HXD-4417-B)"
+   },
+   "latency": 3.27,
+   "served": "deepseek-flash",
+   "usage": {
+    "in": 146,
+    "cache_read": 16256,
+    "out": 162,
+    "think_chars": 629
+   },
+   "raw": "HXD-4417-B"
+  }
+ }
+}

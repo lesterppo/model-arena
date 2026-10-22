@@ -1,0 +1,291 @@
+{
+ "designer": "deepseek-flash",
+ "round": 11,
+ "note": "Algorithm / proof style battery. Every key is reproduced by harness/verify_r11_keys.py before it is allowed to score.",
+ "tests": [
+  {
+   "id": "r11_ds_qa_crt",
+   "kind": "qa",
+   "prompt": "Find the smallest positive integer x such that x = 2 (mod 7), x = 3 (mod 11) and x = 5 (mod 13). Reply with the integer only.",
+   "score": {
+    "expect_num": "135"
+   }
+  },
+  {
+   "id": "r11_ds_qa_expect_chips",
+   "kind": "qa",
+   "prompt": "A bag holds 4 red, 5 blue and 6 green chips. Chips are drawn one at a time without replacement until the first green chip appears. What is the expected number of draws, counting that final green draw? Give the exact fraction or a decimal to at least 6 decimal places.",
+   "score": {
+    "expect_num": "2.285714",
+    "tolerance": 0.002,
+    "expect_any": [
+     "16/7"
+    ]
+   }
+  },
+  {
+   "id": "r11_ds_code_merge_intervals",
+   "kind": "code",
+   "prompt": "Write a Python function `merge_intervals(intervals)` that merges a list of closed integer intervals [start, end] into the minimal list of non-overlapping intervals, sorted by start. Two intervals merge when they overlap or share an endpoint, so [1,2] and [2,3] become [1,3]. Intervals with a gap between them stay separate, so [1,2] and [3,4] remain two intervals. Return a list of [start, end] lists. Do not modify the input. Return [] for an empty input. Answer with one ```python code block containing the function.",
+   "score": {
+    "func": "merge_intervals",
+    "cases": [
+     [
+      [
+       [
+        1,
+        3
+       ],
+       [
+        2,
+        6
+       ],
+       [
+        8,
+        10
+       ],
+       [
+        15,
+        18
+       ]
+      ],
+      [
+       [
+        1,
+        6
+       ],
+       [
+        8,
+        10
+       ],
+       [
+        15,
+        18
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        1,
+        2
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        3,
+        4
+       ]
+      ],
+      [
+       [
+        1,
+        4
+       ]
+      ]
+     ],
+     [
+      [],
+      []
+     ],
+     [
+      [
+       [
+        5,
+        6
+       ],
+       [
+        1,
+        2
+       ]
+      ],
+      [
+       [
+        1,
+        2
+       ],
+       [
+        5,
+        6
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        1,
+        10
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        4,
+        5
+       ]
+      ],
+      [
+       [
+        1,
+        10
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        1,
+        4
+       ],
+       [
+        0,
+        4
+       ]
+      ],
+      [
+       [
+        0,
+        4
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        1,
+        2
+       ],
+       [
+        5,
+        6
+       ],
+       [
+        3,
+        4
+       ]
+      ],
+      [
+       [
+        1,
+        2
+       ],
+       [
+        3,
+        4
+       ],
+       [
+        5,
+        6
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        2,
+        3
+       ],
+       [
+        2,
+        3
+       ]
+      ],
+      [
+       [
+        2,
+        3
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        1,
+        3
+       ],
+       [
+        3,
+        5
+       ],
+       [
+        5,
+        7
+       ]
+      ],
+      [
+       [
+        1,
+        7
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        10,
+        12
+       ],
+       [
+        11,
+        13
+       ],
+       [
+        13,
+        15
+       ]
+      ],
+      [
+       [
+        10,
+        15
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        7,
+        8
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        3,
+        4
+       ]
+      ],
+      [
+       [
+        1,
+        2
+       ],
+       [
+        3,
+        4
+       ],
+       [
+        7,
+        8
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "r11_ds_qa_logic",
+   "kind": "qa",
+   "prompt": "Five people - Ana, Ben, Cai, Dee and Eve - stand in a line, each holding a different fruit: apple, banana, cherry, date, elderberry. These facts are all true:\n1. Cai stands immediately after Ben.\n2. The person holding the elderberry stands immediately before Cai.\n3. Eve stands immediately after Dee.\n4. Dee holds either the apple or the cherry.\n5. Ana does not hold the banana or the date.\n6. Dee does not hold the apple.\n7. Cai holds the date.\n8. Dee stands third in the line.\nWhich fruit does Ben hold? Answer with the fruit name only.",
+   "score": {
+    "expect_contains_any": [
+     "elderberry"
+    ]
+   }
+  }
+ ]
+}

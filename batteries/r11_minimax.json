@@ -1,0 +1,181 @@
+{
+ "designer": "minimax-m3.1-flash",
+ "round": 11,
+ "note": "Precision / output-format / live-service style battery. Keys verified by harness/verify_r11_keys.py.",
+ "tests": [
+  {
+   "id": "r11_mm_qa_rounding",
+   "kind": "qa",
+   "prompt": "In Python 3, what does round(2.675, 2) return, and what does round(1.005, 2) return? Give both values in order, comma separated, then one sentence on why people are surprised by these results.",
+   "score": {
+    "expect_nums_all": [
+     "2.67",
+     "1.0"
+    ]
+   }
+  },
+  {
+   "id": "r11_mm_code_merge_records",
+   "kind": "code",
+   "prompt": "Write a Python function `merge_records(records)` that collapses duplicate records with the same id, keeping the record with the highest version; if two records share an id AND a version, keep the one that appears later in the input list. Return the surviving records as a list of dicts sorted by id. Do not modify the input. Each record is a dict with keys id (str), version (int) and score (int). Answer with one ```python code block containing the function.",
+   "score": {
+    "func": "merge_records",
+    "cases": [
+     [
+      [
+       {
+        "id": "a",
+        "version": 1,
+        "score": 5
+       },
+       {
+        "id": "b",
+        "version": 3,
+        "score": 1
+       },
+       {
+        "id": "a",
+        "version": 2,
+        "score": 9
+       }
+      ],
+      [
+       {
+        "id": "a",
+        "version": 2,
+        "score": 9
+       },
+       {
+        "id": "b",
+        "version": 3,
+        "score": 1
+       }
+      ]
+     ],
+     [
+      [
+       {
+        "id": "a",
+        "version": 2,
+        "score": 1
+       },
+       {
+        "id": "a",
+        "version": 2,
+        "score": 7
+       }
+      ],
+      [
+       {
+        "id": "a",
+        "version": 2,
+        "score": 7
+       }
+      ]
+     ],
+     [
+      [
+       {
+        "id": "z",
+        "version": 1,
+        "score": 0
+       },
+       {
+        "id": "m",
+        "version": 9,
+        "score": 3
+       },
+       {
+        "id": "z",
+        "version": 5,
+        "score": 2
+       }
+      ],
+      [
+       {
+        "id": "m",
+        "version": 9,
+        "score": 3
+       },
+       {
+        "id": "z",
+        "version": 5,
+        "score": 2
+       }
+      ]
+     ],
+     [
+      [],
+      []
+     ],
+     [
+      [
+       {
+        "id": "b",
+        "version": 1,
+        "score": 1
+       },
+       {
+        "id": "a",
+        "version": 1,
+        "score": 1
+       }
+      ],
+      [
+       {
+        "id": "a",
+        "version": 1,
+        "score": 1
+       },
+       {
+        "id": "b",
+        "version": 1,
+        "score": 1
+       }
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "r11_mm_qa_table_csv",
+   "kind": "qa",
+   "prompt": "Convert this order table to CSV. Keep a header line 'name,total', one row per order, total = quantity * unit_price printed with exactly two decimals, rows sorted by total descending. Reply with the CSV only, no code fence.\nname,quantity,unit_price\nWidget A,3,12.50\nGadget B,2,7.25\nDoohickey C,4,3.125",
+   "score": {
+    "expect_lines_present": [
+     "name,total",
+     "Widget A,37.50",
+     "Gadget B,14.50",
+     "Doohickey C,12.50"
+    ]
+   }
+  },
+  {
+   "id": "r11_mm_agent_dental_booking",
+   "kind": "agent",
+   "prompt": "Book the earliest available dental appointment for today. Use the slot tools to find out which dental slots exist and which are open, book the earliest open one, then list the bookings to confirm. Report the time you booked.",
+   "tools": [
+    {
+     "name": "list_slots",
+     "description": "List appointment slots for a service",
+     "parameters": {
+      "service": "service name: dental or physio"
+     }
+    },
+    {
+     "name": "book_slot",
+     "description": "Book an appointment slot",
+     "parameters": {
+      "service": "service name",
+      "slot": "time slot label"
+     }
+    },
+    {
+     "name": "list_bookings",
+     "description": "List current bookings",
+     "parameters": {}
+    }
+   ]
+  }
+ ]
+}
